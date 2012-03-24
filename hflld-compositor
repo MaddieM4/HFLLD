@@ -1,0 +1,83 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use Getopt::Std;
+
+my %options=();
+getopts("hi:o:f", \%options);
+
+if ($options{h}) {
+    usage();
+} else {
+    my $if;
+    my $of;
+    if ($options{i} and $options{i} ne "-") {
+        open $if, "<", $options{i} or die $!;
+    } else {
+        $if = \*STDIN;
+    }
+    if ($options{o} and $options{o} ne "-") {
+        open $of, ">", $options{o} or die $!;
+    } else {
+        $of = \*STDOUT;
+    }
+    my $analysis = join("", run_analysis($if));
+    if ($options{f}) {
+        $analysis = finalize($analysis);
+    }
+    print $of $analysis;
+}
+
+sub usage {
+    print "usage: hflld-compositor [-h] [-f] [-i filename] [-o filename]\n";
+    print "\nSwitches:";
+    print "\n    -h     Help";
+    print "\n    -f     Finalize (Mark missing files and convert {=={ to {{ and such)";
+    print "\n    -i     Specify input filename (stdin if not given)";
+    print "\n    -o     Specify output filename (stdout if not given)";
+    print "\n"
+}
+
+sub run_analysis {
+    # First argument is input file
+    (my $if) = @_;
+    my @result;
+    while (<$if>) {
+        my $line = $_;
+	$line = process_line($line);
+        push(@result, $line);
+    }
+    close($if);
+    return @result;
+}
+
+sub file_analysis {
+    (my $prefix, my $filename) = @_;
+    if(open(my $file, "<", $filename)) {
+        my $analysis = join("", run_analysis($file));
+        return $prefix . join("\n$prefix", split(/\n/, $analysis));
+    } else {
+        return "$prefix\{{ $filename }}";
+    }
+}
+
+sub process_line {
+    (my $line) = @_;
+    $line =~ s/([^\{]*)\{\{\s*(\S*)\s*\}\}/file_analysis($1,$2)/eg;
+    return $line;
+}
+
+sub finalize {
+    (my $lines) = @_;
+    my @result;
+    foreach(split(/\n/, $lines)) {
+        my $line = $_;
+        # Mark unresolved files as missing
+        $line =~ s/([^\{]*)\{\{\s*(\S*)\s*\}\}/$1\(\( missing file: $2 \)\)/g;
+        # Fix {=={s
+        $line =~ s/([\{\}])==([\{\}])/$1$2/g;
+        push(@result, $line);
+    }
+    return join("\n", @result);
+}
