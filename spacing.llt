@@ -1,0 +1,11 @@
+The compositor works by finding lines that contain {=={ somefilename }==} patterns. It takes whatever exists
+on the line before that, and uses it as a prefix for every line it includes from the named file.
+
+Characters are calculated by byte, so using fancy Unicode characters can burn through your quota of 5000 characters
+per page. It's not a terribly "smart" method, but also uncomplicated and decidedly non-arbitrary. Would you really
+rather do special handling for things like glyphs? No? I thought not. Sorry if that's an uncomfortably technical way
+to draw the line for lawyer people, but it IS the simpler solution.
+
+Character counts for a page are computed by adding up the number of bytes of every line that starts with a
+non-whitespace character. The newline is included in the count. However, a line that only consists of a newline
+character will not add to the count.

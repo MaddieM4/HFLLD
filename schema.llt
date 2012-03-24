@@ -1,0 +1,20 @@
+(( HFLLD Document Schema and Formatting ))
+
+The schema of an HFLLD is pretty simple. It's composed of multiple pages, each 5000 characters or less, which
+are nested with arbitrary whitespace indentation (preferably 2 spaces).
+
+  {{ spacing.llt }}
+
+Generally, for size sanity-checking and automatic layering and suchnot, you should be doing each page as a separate
+file, and splicing them together using a compositer like the simplistic one provided in the HFLLD repository.
+
+  {{ compositor.llt }}
+
+A top-level page should say what formatting it and its descendants are - plain text, HTML, Markdown, LaTeX...
+You can also express this in the filename by layering extensions, such as MyLDD.txt.llt. The final extension
+should either be llt or lld... llt files are templates that represent a single page, and reference subpages,
+while lld files are finished products ready to either distribute/pass to other tools to make them
+interactive or whatever.
+
+To give a page a title, make its first line in the format of "(( My Title ))". Don't use the quote marks, just
+the parentheses, please. Tools that make stuff out of .lld files can then use those titles however they see fit.

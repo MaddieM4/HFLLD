@@ -1,0 +1,14 @@
+(( Using the Compositor ))
+
+The compositor that comes with the repository, hflld-compositor, is a pretty simplistic program that
+turns a set of subpages into a full, all-inclusive result. It's not too hard to use, either.
+
+To see the options, run "hflld-compositor -h" on the command line, excluding the quote marks, of course.
+This will print out what options are built in. Generally, you'll want to use the -i and -o options to
+specify input and output filenames. Use the -f option to "finalize" the file. That's usually what you
+want to do, unless you specifically want to use the output as a template.
+
+To see an example of this in action, look at the shell script, build.sh. This builds HFLLD.llt into its
+final .lld file, and in the future, create more output formats as well based on the .lld.
+
+For examples of how to make template files (.llt's), open this page (compositor.llt) in a text editor.

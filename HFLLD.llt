@@ -1,0 +1,26 @@
+(( Heirarchically Formatted Layered Legal Document Specification and Reference ))
+
+This is a plain text HFLLD, according to the schema defined within itself.
+
+  {{schema.llt}}
+
+Anyone can copy, modify and use this as they see fit. However, people should be advised to use caution with any
+custom-brewed, modified versions of it. It's generally better to wait until such changes are merged into the
+canonical branch moderated by the original author, Philip Horger.
+
+  {{usage.llt}}
+
+HFLLDs are intended to provide safety and security to all parties in an agreement, and works to guarantee certain
+protections legally, such as providing the boilerplate for requiring signatures, and making any subpage that is used
+to hide abusive, manipulative, or misleading legal "code" behind an agreaable face liable to legal invalidation. So
+if somebody tries to use you, and you can point out that the legal jargon doesn't match the summary, you can take
+that guy (or company) to court and win.
+
+  {{protections.llt}}
+
+Long term, it's hoped that the HFLLD as a concept will grow in popularity organically as a type of interpersonal
+agreement, but eventually become a common format for government legislation all over the world (or at least, inspire
+positive changes in the same directions for those arenas). It's also hoped that the contributions of legal- and
+software-talented people will contribute to a robust and simple mainline version of the HFLLD spec.
+
+For more information, see the core project's github page, at https://github.com/campadrenalin/HFLLD
