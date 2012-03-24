@@ -1,0 +1,26 @@
+(( Legal Protections Provided by HFLLDs ))
+
+An HFLLD is composed of pages, which are in turn composed of paragraphs. Every paragraph may be described
+by a single page, but every paragraph in that page is describable in the same manner. It is a recursively
+parseable legal document.
+
+  {{ legaldefs.llt }}
+
+A subpage - that is, any page except the top-level page - must expand on the paragraph it describes, and
+may not express things which are outside the scope of that paragraph, contrary to that paragraph, or could
+be considered to be a misleading interpretation of that paragraph. That includes the paragraph's intent.
+
+  {{ layerprotections.llt }}
+
+Any legal document claiming to be an HFLLD must adhere strictly to its formatting schema, as defined earlier
+in this document. It's a pretty easy schema to work with though, so this isn't some huge onus to bear. Any
+document or part of a document that violates the schema shall be considered invalid.
+
+Any attempts to circumvent these protections shall make the pages containing such attempts invalid.
+
+Any part of a document that is ruled invalid for not following the above terms and conditions shall not be
+legally binding. It is up to the judge to decide if this applies retroactively, and if so, how far back. If
+a page or paragraph is ruled invalid, the ruling applies to all its descendant pages and paragraphs as well.
+In such an event, the involved parties are free to renegotiate or drop the agreement in its entirety.
+
+  {{ recursiveinvalidity.llt }}
